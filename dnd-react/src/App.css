@@ -1,11 +1,20 @@
+@font-face{
+  font-family: Spectral;
+  src: url(Spectral-Light.ttf)
+}
+
 .App {
   text-align: center;
+  font-family: Spectral;
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+  /*animation: App-logo-spin infinite 20s linear;*/
+  height: 15vmin;
   pointer-events: none;
+  position: relative;
+  right: 550px;
+  top: 10px;  
 }
 
 .App-header {
@@ -14,14 +23,42 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  justify-content: top;
+  font-size: 30px;
   color: white;
+  
 }
 
 .App-link {
   color: #61dafb;
 }
+
+.topnav{
+position: fixed;
+top: 0px;
+list-style-type: none;
+background-color: #F5F5F5;
+text-decoration: none;
+background: transparent;
+font-family: Spectral;
+}
+
+.topnav a{
+  color: white;
+  float: left;
+  text-align: center;
+  padding: 14px 16px;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+.topnav a:hover{
+  background-color: #e0ecff;
+  color: black;
+  text-decoration: none;
+  border-bottom: 3 px solid #2b2b2b;
+}
+
 
 @keyframes App-logo-spin {
   from {
