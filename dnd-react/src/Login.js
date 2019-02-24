@@ -4,61 +4,54 @@ import './App.css';
 import firebase from './firebase.js';
 
 class Login extends Component {
-  constructor() {
-    super();
-    this.state = {
-      password: '',
-      username: ''
-    }
+
+  constructor(props) {
+    super(props);
+    this.login = this.login.bind(this);
+    this.signup = this.signup.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.state = {
+      email:'',
+      password:''
+    }
+  }
+
+  login(e) {
+      e.preventDefault();
+      firebase.auth().signInWithEmailAndPassword(this.state.email,this.state.password).then((u)=> {
+      }).catch((error) => {
+          console.log(error);
+      });
+
+      console.log("Within Login");
+  }
+
+  signup(e) {
+      e.preventDefault();
+      firebase.auth().createUserWithEmailAndPassword(this.state.email,this.state.password).catch((error) => {
+          console.log(error);
+      });
   }
 
   handleChange(e) {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  }
-
-  handleSubmit(e) {
-    e.preventDefault();
-    const itemsRef = firebase.database().ref('users');
-    const lg = {
-      pass: this.state.password,
-      user: this.state.username
-    }
-    itemsRef.push(lg);
-    this.setState({
-      password: '',
-      username: ''
-    });
+      this.setState({ [e.target.name]: e.target.value});
   }
 
   render() {
     return (
-      <div className='Login'>
-        <header>
-            <div className='wrapper'>
-              <h1>Login</h1>
-              
-            </div>
-        </header>
         <div className='container'>
-          <section className='add-item'>
-              <form onSubmit={this.handleSubmit}>
-                <input type="text" name="username" placeholder="Username" onChange={this.handleChange} value={this.state.username} />
-                <input type="text" name="password" placeholder="Password" onChange={this.handleChange} value={this.state.password} />
-                <button>Login</button>
-              </form>
-          </section>
-          <section className='display-item'>
-            <div className='wrapper'>
-              <ul>
-              </ul>
-            </div>
-          </section>
+            <form>
+                <div>
+                    <input value={this.state.email} onChange={this.handleChange} type="email" name="email" id="exampleInputEmail1" placeholder="Enter Email" />
+                </div>
+                <div>
+                    <input value={this.state.password} onChange={this.handleChange} type="password" name="password" id="exampleInputPassword1" placeholder="Password" />
+                </div>
+
+                <button type="submit" onClick={this.login}>Login</button>
+                <button onClick={this.signup}>Sign Up</button>
+            </form>
         </div>
-      </div>
     );
   }
 }
