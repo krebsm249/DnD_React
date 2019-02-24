@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './dndicon.png';
 import './App.css';
 import firebase from './firebase';
+import {Navbar, Nav} from 'react-bootstrap';
 
 
 class App extends Component {
@@ -16,19 +17,22 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <div class="topnav">
-              <a href="Home">Home</a>
-              <a href="Characters">Characters</a>
-              <a href="Logout" onClick={this.logout}>Logout</a>
-          </div>
+      <div className='App'>
+      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+        <Navbar.Brand href="#home">DnD Character Creator</Navbar.Brand>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav">
+            <Nav className="mr-auto">
+              <Nav.Link href="#Home">Home</Nav.Link>
+              <Nav.Link href="#Characters">Characters</Nav.Link>
+              <Nav.Link href="#Logout" onClick={this.logout}>Logout</Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
         <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Welcome to the Dungeons and Dragons character generator!
-          </p>
-
-        </header>
+        <p>
+           Welcome to the Dungeons and Dragons character generator!
+        </p>
       </div>
     );
   }
